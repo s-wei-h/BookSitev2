@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Professor Hilton Book Reccomendations";
+}
+
+@model BookListViewModel
+
+<div class="text-center">
+    <h1 class="pt-4 display-4">
+        <a class=" text-decoration-none text-info" asp-area="" asp-controller="Home" asp-action="Index">@ViewBag.Title</a>
+    </h1>
+
+    @foreach (var book in Model.BookShelf)
+    {
+        //p-3 -> padding, m-lg-4 -> margin, border-info -> blue border
+        <div class="container-sm p-3 m-lg-4 border border-info rounded-lg" style="background-color: aliceblue;">
+            <h3>@book.Title</h3>
+            <div>
+                <p class="font-weight-bold">Written by: @book.AuthorLast, @book.AuthorFirst</p>
+                <p>Published by: @book.Publisher</p>
+                <p>IBSN: @book.ISBN</p>
+                <p>Number of pages: @book.NumPages</p>
+                <p>Can be purchased for $@book.Price</p>
+            </div>
+        </div>
+        <br />
+    }
+</div>
+
+<div class="p-5" page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true" page-class="btn m-3" page-class-normal="btn-info" page-class-selected="btn-outline-info" class="btn-group">
+</div>
